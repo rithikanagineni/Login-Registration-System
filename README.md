@@ -4,12 +4,6 @@ A modern, fully responsive Login and Registration system with real-time form val
 
 ---
 
-## 🌐 Live Demo
-
-**View the live project:** [https://YOUR-USERNAME.github.io/login-registration/](https://YOUR-USERNAME.github.io/login-registration/)
-
-Replace `YOUR-USERNAME` with your actual GitHub username.
-
 **Local Access:** `http://localhost/login-registration/login.html`
 
 ---
