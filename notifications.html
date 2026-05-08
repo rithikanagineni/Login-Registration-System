@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Task 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .notifications-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .notifications-card h2 {
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 40px;
+            margin: 0;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notifications-list {
+            padding: 30px 40px;
+        }
+
+        .notification-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        .notification-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .notification-icon {
+            font-size: 24px;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .notification-content h3 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .notification-content p {
+            color: #888;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .notification-time {
+            color: #aaa;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 480px) {
+            .notifications-card h2 {
+                padding: 20px;
+                font-size: 24px;
+            }
+
+            .notifications-list {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="dashboard.html" class="back-button">← Back to Dashboard</a>
+
+    <div class="notifications-card">
+        <h2><i class="fas fa-bell"></i> Your Notifications</h2>
+
+        <div class="notifications-list" id="notificationsList">
+            <div class="notification-item">
+                <div class="notification-icon">🎉</div>
+                <div class="notification-content">
+                    <h3>Welcome to Task 2!</h3>
+                    <p>You have successfully registered and logged in.</p>
+                    <div class="notification-time">Just now</div>
+                </div>
+            </div>
+
+            <div class="notification-item">
+                <div class="notification-icon">✅</div>
+                <div class="notification-content">
+                    <h3>Profile Complete</h3>
+                    <p>Your profile is 100% complete.</p>
+                    <div class="notification-time">2 minutes ago</div>
+                </div>
+            </div>
+
+            <div class="notification-item">
+                <div class="notification-icon">🔔</div>
+                <div class="notification-content">
+                    <h3>New Feature Available</h3>
+                    <p>Check out the new dashboard features.</p>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+            </div>
+
+            <div class="notification-item">
+                <div class="notification-icon">🔒</div>
+                <div class="notification-content">
+                    <h3>Security Alert</h3>
+                    <p>Your account login was successful from a new device.</p>
+                    <div class="notification-time">Today</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -127,7 +127,7 @@ function setLoading(button, isLoading) {
     }
 }
 
-// ===== LOGIN FORM VALIDATION =====
+// ===== LOGIN FORM VALIDATION & SUBMISSION =====
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
     // Real-time email validation
@@ -203,14 +203,31 @@ if (loginForm) {
         // Simulate API call
         setTimeout(() => {
             setLoading(submitBtn, false);
-            showToast('✅ Login successful! Welcome back!', 'success');
+            
+            // Store user data in localStorage/sessionStorage
+            const userData = {
+                email: email,
+                name: email.split('@')[0],
+                loginTime: new Date().toISOString(),
+                remember: document.querySelector('input[name="remember"]').checked
+            };
+            
+            // Save to appropriate storage
+            if (userData.remember) {
+                localStorage.setItem('userData', JSON.stringify(userData));
+            } else {
+                sessionStorage.setItem('userData', JSON.stringify(userData));
+            }
+            
+            showToast('✅ Login successful! Redirecting...', 'success');
             
             // Log form data to console
-            console.log('Login Data:', {
-                email: email,
-                password: password,
-                remember: document.querySelector('input[name="remember"]').checked
-            });
+            console.log('Login Data:', userData);
+            
+            // Redirect to dashboard after 1.5 seconds
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
             
             // Reset form
             loginForm.reset();
@@ -219,7 +236,7 @@ if (loginForm) {
     });
 }
 
-// ===== REGISTRATION FORM VALIDATION =====
+// ===== REGISTRATION FORM VALIDATION & SUBMISSION =====
 const registerForm = document.getElementById('registerForm');
 if (registerForm) {
     // Real-time name validation
@@ -382,15 +399,27 @@ if (registerForm) {
         // Simulate API call
         setTimeout(() => {
             setLoading(submitBtn, false);
-            showToast('✅ Registration successful! Welcome!', 'success');
             
-            // Log form data to console
-            console.log('Registration Data:', {
+            // Store user data in localStorage/sessionStorage
+            const userData = {
                 name: name,
                 email: email,
                 password: password,
-                terms: terms
-            });
+                loginTime: new Date().toISOString(),
+                remember: true
+            };
+            
+            localStorage.setItem('userData', JSON.stringify(userData));
+            
+            showToast('✅ Registration successful! Redirecting to dashboard...', 'success');
+            
+            // Log form data to console
+            console.log('Registration Data:', userData);
+            
+            // Redirect to dashboard after 1.5 seconds
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
             
             // Reset form
             registerForm.reset();
@@ -412,7 +441,8 @@ if (registerForm) {
 
 // ===== SOCIAL LOGIN BUTTONS =====
 document.querySelectorAll('.btn-social').forEach(btn => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
         const platform = this.querySelector('i').classList.contains('fa-google') ? 'Google' :
                         this.querySelector('i').classList.contains('fa-facebook') ? 'Facebook' :
                         'GitHub';

@@ -12,11 +12,17 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         .navbar {
@@ -74,9 +80,11 @@
             transform: translateY(-2px);
         }
 
-        .container {
+        .main-content {
+            flex: 1;
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
         }
 
         .welcome-section {
@@ -195,15 +203,58 @@
             font-size: 14px;
         }
 
+        /* FOOTER */
         .footer {
             text-align: center;
             color: white;
-            margin-top: 40px;
-            padding-top: 20px;
+            margin-top: auto;
+            padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.2);
         }
 
+        .footer p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer a:hover {
+            opacity: 0.8;
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: #28a745;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            animation: slideIn 0.4s ease-out;
+            z-index: 9999;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
             .navbar {
                 flex-direction: column;
                 gap: 15px;
@@ -232,27 +283,33 @@
             }
         }
 
-        .toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 25px;
-            background: #28a745;
-            color: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            animation: slideIn 0.4s ease-out;
-            z-index: 9999;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(100px);
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
             }
-            to {
-                opacity: 1;
-                transform: translateX(0);
+
+            .navbar {
+                padding: 15px;
+            }
+
+            .navbar h1 {
+                font-size: 20px;
+            }
+
+            .welcome-section {
+                padding: 20px;
+            }
+
+            .welcome-section h2 {
+                font-size: 20px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .footer p {
+                font-size: 12px;
             }
         }
     </style>
@@ -264,12 +321,12 @@
     <h1>🎯 Dashboard</h1>
     <div class="navbar-buttons">
         <a href="profile.html" class="btn btn-primary">👤 My Profile</a>
-        <a href="logout.php" class="btn btn-danger" onclick="return confirm('Are you sure you want to logout?')">🚪 Logout</a>
+        <a href="logout.html" class="btn btn-danger" onclick="return confirm('Are you sure you want to logout?')">🚪 Logout</a>
     </div>
 </nav>
 
-<!-- Main Container -->
-<div class="container">
+<!-- Main Content -->
+<div class="main-content">
     <!-- Welcome Section -->
     <div class="welcome-section">
         <h2>Welcome to Your Dashboard!</h2>
@@ -311,43 +368,43 @@
             <i class="fas fa-cog"></i>
             <h3>Settings</h3>
             <p>Manage your account settings and preferences</p>
-            <a href="#settings">Go to Settings →</a>
+            <a href="settings.html">Go to Settings →</a>
         </div>
 
         <div class="card">
             <i class="fas fa-shield-alt"></i>
             <h3>Security</h3>
             <p>Update your password and security settings</p>
-            <a href="#security">Change Password →</a>
+            <a href="security.html">Change Password →</a>
         </div>
 
         <div class="card">
             <i class="fas fa-bell"></i>
             <h3>Notifications</h3>
             <p>Manage your notification preferences</p>
-            <a href="#notifications">View Notifications →</a>
+            <a href="notifications.html">View Notifications →</a>
         </div>
 
         <div class="card">
             <i class="fas fa-file-alt"></i>
             <h3>Reports</h3>
             <p>View your activity reports and analytics</p>
-            <a href="#reports">Generate Report →</a>
+            <a href="reports.html">Generate Report →</a>
         </div>
 
         <div class="card">
             <i class="fas fa-headset"></i>
             <h3>Support</h3>
             <p>Get help from our support team</p>
-            <a href="#support">Contact Support →</a>
+            <a href="support.html">Contact Support →</a>
         </div>
     </div>
+</div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>📧 Need help? <a href="mailto:support@example.com" style="color: white; text-decoration: underline;">Contact us</a></p>
-        <p>© 2024 Task 2 - Login & Registration System. All rights reserved.</p>
-    </div>
+<!-- Footer -->
+<div class="footer">
+    <p>📧 Need help? <a href="support.html">Contact us</a></p>
+    <p>© 2024 Task 2 - Login & Registration System. All rights reserved.</p>
 </div>
 
 <script>
